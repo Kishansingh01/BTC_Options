@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  trading-engine:
+    build: .
+    container_name: btc_straddle_engine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    ports:
+      - "3000:3000"
+    command: python server.py
